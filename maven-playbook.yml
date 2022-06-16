@@ -8,22 +8,15 @@
     motd_ubuntu: "welcome to ubuntu linux \n"
   
   tasks:
-    - name: install epel release 
-    #epel enterprise linux it is being specially created for redhat based system
-      dnf: 
-        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-        update_cache: yes
-        state: present #present or absent
-      when: ansible_distribution == "RedHat"
-    - name: install nginx
+    - name: install java
       package: 
       #this module autmatically identify the os and run the installation command accoring to your os
-        name: java-11-openjdk 
+        name: java-11-openjdk-headless
         state: latest
     - name: Download file from a file path
       get_url:
        url: https://www-us.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
-       dest: cd /opt
+       dest: cd /opt/
     - name: Unarchive a file that is already on the remote machine
       unarchive:
        src: /opt/apache-maven-3.8.5-bin.tar.gz
